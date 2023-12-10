@@ -1,0 +1,42 @@
+import pandas as pd
+import networkx as nx
+#View data collection forms and/or import one-mode/two-mode datasets
+#View data collection form
+data_collection_form = pd.DataFrame({
+'Node1': [1, 2, 3, 1, 4],
+'Node2': [2, 3, 4, 5, 5],
+'Weight': [0.5,0.8,0.2,0.7,0.9]
+})
+print("Data Collection Form:")
+print (data_collection_form)
+#Import one-mode/two-mode datasets
+# Example for one-node dataset
+one_mode_data = pd.DataFrame({
+'Node': [1, 2, 3, 4],
+'Attribute1': ['A','B','C','D'],
+'Attribute2': [10, 20, 15, 25]
+})
+print("\nOne-node Dataset:")
+print(one_mode_data)
+#Example for two-mode dataset
+two_mode_data = pd.DataFrame({
+'Node1': [1, 2, 3, 1, 4],
+'Node2': ['A','B','C','D','A'],
+'Weight': [0.5, 0.8, 0.2, 0.7, 0.9]
+})
+print("\n Two-Dataset:")
+print(two_mode_data)
+# Basic Networks matrices transformations using python code
+# Transforming a one-mode dataset to a graph
+G_one_mode = nx.from_pandas_edgelist(data_collection_form,'Node1', 'Node2', ['Weight'])
+# Transforming a two-mode dataset to a bipartite graph
+B_two_mode = nx.from_pandas_edgelist(two_mode_data, 'Node1', 'Node2', ['Weight'], create_using=nx.Graph)
+# Example: Extracting adjacency matrix from the graph
+adjacency_matrix = nx.to_numpy_array(G_one_mode)
+print("\nAdjacency Matrix:")
+print (adjacency_matrix)
+adjacency_matrix = nx.to_numpy_array(B_two_mode)
+print("\nAdjacency Matrix:")
+print (adjacency_matrix)
+print("Name : Abhishek Jaiswar")
+print("Roll No: 11")
